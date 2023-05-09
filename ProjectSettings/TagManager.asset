@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Ammo
+  - Switch Token
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -11,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
@@ -40,4 +44,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2971787577
+    locked: 0
+  - name: Terrain
+    uniqueID: 3844328545
+    locked: 0
+  - name: Characters
+    uniqueID: 1881651255
+    locked: 0
+  - name: Objects
+    uniqueID: 817373673
+    locked: 0
+  - name: Foreground
+    uniqueID: 965241715
+    locked: 0
+  - name: UI
+    uniqueID: 1604650699
     locked: 0
