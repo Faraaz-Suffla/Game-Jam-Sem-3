@@ -8,6 +8,7 @@ TagManager:
   - Ammo
   - Switch Token
   - Bullet
+  - Obstacle
   layers:
   - Default
   - TransparentFX
