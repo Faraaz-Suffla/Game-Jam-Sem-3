@@ -34142,6 +34142,7 @@ GameObject:
   - component: {fileID: 112354667}
   - component: {fileID: 112354666}
   - component: {fileID: 112354665}
+  - component: {fileID: 112354670}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -34318,6 +34319,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &112354670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112354662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67786fc670fc7d6468a88d2f83c785ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 2113850848}
+  shotPrefab: {fileID: 0}
 --- !u!4 &113323478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9218558452853728201, guid: 4ccdc23957f6f5e409dfc68022bae259, type: 3}
@@ -70109,7 +70124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113850847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.75, y: 0.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
