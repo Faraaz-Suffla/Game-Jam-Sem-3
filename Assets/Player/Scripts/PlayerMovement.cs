@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rigidBody;
+    [SerializeField] private Rigidbody2D rigidBody;
     private Animator animator;
-    private SpriteRenderer playerSprite;
-    private BoxCollider2D collider;
-    [SerializeField] private LayerMask groundLayer;
+    public CharacterController2D controller;
     [Space]
     private float xMovement;
     private float yMovement;
-    [SerializeField] private float xSpeed = 5;
-    [SerializeField] private float jumpSpeed = 8f;
+    [SerializeField] private float xSpeed = 40;
+    private bool isGrounded;
+
+    [SerializeField] private CapsuleCollider2D collider;
+    [SerializeField] private LayerMask groundLayer;
 
     private enum AnimationStates
     {
@@ -24,43 +25,49 @@ public class PlayerMovement : MonoBehaviour
     }
     private AnimationStates state;
 
-    void Start()
+    bool jump = false;
+
+    void Awake()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        playerSprite = GetComponent<SpriteRenderer>();
-        collider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
-
         xMovement = Input.GetAxisRaw("Horizontal") * xSpeed;
         yMovement = rigidBody.velocity.y;
-        
-        if (Input.GetButtonDown("Jump") && isGroundedCheck())
-        {
-            yMovement = jumpSpeed;
-        }
-        rigidBody.velocity = new Vector2(xMovement, yMovement);
 
+        if (Input.GetButtonDown("Jump"))
+        {
+            jump = true;
+            isGrounded = false;
+        }
+
+        
+        else if (Input.GetButtonDown("Fire2"))
+        {
+            Melee();
+        }
     }
+     private void Shoot()
+    {
+        
+    }
+
+    private void Melee()
+    {
+        animator.SetTrigger("Melee");
+    }
+
     private void FixedUpdate()
     {
+        controller.Move(xMovement * Time.fixedDeltaTime, jump);
+        jump = false;
         SetAnimatorState();
     }
 
     private void SetAnimatorState()
     {
-        if (xMovement > 0)
-        {
-            playerSprite.flipX = false;
-        }
-        else if (xMovement < 0)
-        {
-            playerSprite.flipX = true;
-        }
-
         if (isGroundedCheck())
         {
             if(Mathf.Abs(xMovement) > 0)
@@ -74,17 +81,22 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (rigidBody.velocity.y > 0)
+            if (yMovement > 0)
             {
                 state = AnimationStates.Jump;
             }
-            else if (rigidBody.velocity.y < 0)
+            else if (yMovement < 0)
             {
                 state = AnimationStates.Fall;
             }
         }
 
         animator.SetInteger("State", (int)state);
+    }
+
+    public void OnLanding()
+    {
+        isGrounded = true;
     }
 
     private bool isGroundedCheck()
