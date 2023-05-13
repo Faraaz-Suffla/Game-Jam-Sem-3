@@ -45,17 +45,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (Instance != this)
-        {
+        //if (Instance == null)
+        //{
+        //}
+        //else if (Instance != this)
+        //{
             
-            //Destroy(gameObject);
-            //Debug.Log("GameManager object has been destroyed!");
-        }
+        //    //Destroy(gameObject);
+        //    //Debug.Log("GameManager object has been destroyed!");
+        //}
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         StartFirstLevel();
     }
