@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rigidBody;
-    private Animator animator;
+    [SerializeField] private Animator animator;
     public CharacterController2D controller;
     [Space]
     private float xMovement;
@@ -29,12 +29,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        //if (GameManager.Instance.isGamePaused == false)
+        if (GameManager.Instance.isGamePaused == false)
         {
             xMovement = Input.GetAxisRaw("Horizontal") * xSpeed;
             yMovement = rigidBody.velocity.y;

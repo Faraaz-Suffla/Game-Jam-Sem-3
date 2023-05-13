@@ -26,8 +26,6 @@ public class CharacterController2D : MonoBehaviour
 
 	private void Awake()
 	{
-		
-
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 

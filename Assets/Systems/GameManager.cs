@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     // Should these be GameObject arrays?
     public GameObject PresentSetting;
     public GameObject FutureSetting;
+    public GameObject CurrentSetting; // for shots to be in the right setting
     [Space]
     [Header("Player")]
     [SerializeField] private GameObject PlayerWithoutGun;
@@ -51,11 +52,12 @@ public class GameManager : MonoBehaviour
         }
         else if (Instance != this)
         {
-            Destroy(gameObject);
-            Debug.Log("GameManager object has been destroyed!");
+            
+            //Destroy(gameObject);
+            //Debug.Log("GameManager object has been destroyed!");
         }
 
-        PlayerAmmo = StartingPlayerAmmo;
+        StartFirstLevel();
     }
 
     public void PlayerPicksUpGun()
@@ -70,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void NextLevel()
+    public void NextScene()
     {
         if (currentScene != TotalSceneAmount)
         {
@@ -86,12 +88,24 @@ public class GameManager : MonoBehaviour
 
         if (isCurrentSceneALevel())
         {
-            PresentSetting = GameObject.Find("PresentSetting");
-            FutureSetting = GameObject.Find("FutureSetting");
-            SwitchToPresentSetting();
-            playerAmmoAtLevelStart = PlayerAmmo;
+            StartLevel();
         }
 
+    }
+    private void StartFirstLevel()
+    {
+        // player turns into player without gun if restart first level
+        PlayerAmmo = StartingPlayerAmmo;
+        StartLevel();
+    }
+
+    private void StartLevel()
+    {
+        PlayerWithGun = GameObject.FindGameObjectWithTag("Player");
+        PresentSetting = GameObject.FindGameObjectWithTag("PresentSetting");
+        FutureSetting = GameObject.FindGameObjectWithTag("FutureSetting");
+        SwitchToPresentSetting();
+        playerAmmoAtLevelStart = PlayerAmmo;
     }
 
     private bool isCurrentSceneALevel()
@@ -104,11 +118,14 @@ public class GameManager : MonoBehaviour
         if (isCurrentSceneALevel())
         {
             SceneManager.LoadScene(currentScene);
-            SwitchToPresentSetting();
             PlayerAmmo = playerAmmoAtLevelStart;
             if (currentScene == StartLevelSceneIndex)
             {
-                // player turns into player without gun if restart first level
+                StartFirstLevel();
+            }
+            else
+            {
+                StartLevel();
             }
         }
     }
@@ -116,21 +133,28 @@ public class GameManager : MonoBehaviour
     public void SwitchSetting()
     {
         //Should we add scene switch effect?
+        if(PlayerOnMovingPlatform)
+        {
+            PlayerWithGun.transform.SetParent(null, true);
+        }
         if(PresentSetting.activeSelf)
         {
             FutureSetting.SetActive(true);
             PresentSetting.SetActive(false);
+            CurrentSetting = FutureSetting;
         }
         else
         {
             FutureSetting.SetActive(false);
             PresentSetting.SetActive(true);
+            CurrentSetting = PresentSetting;
         }
     }
     private void SwitchToPresentSetting()
     {
         PresentSetting.SetActive(true);
         FutureSetting.SetActive(false);
+        CurrentSetting = PresentSetting;
     }
 
     public void PauseToggle() // To pause or unpause the game

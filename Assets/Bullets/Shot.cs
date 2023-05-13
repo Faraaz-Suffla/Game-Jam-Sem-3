@@ -26,7 +26,7 @@ public class Shot : MonoBehaviour
             //get enemy component
             // destroy that enemy
         }
-        Instantiate(impactEffect, transform.position, transform.rotation);
+        Instantiate(impactEffect, transform.position, transform.rotation, GameManager.Instance.CurrentSetting.transform);
         Destroy(gameObject);
     }
 }

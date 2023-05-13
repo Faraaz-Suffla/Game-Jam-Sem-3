@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 6283759696349425928}
+  animator: {fileID: 2967653757837952962}
   controller: {fileID: 8654407453483906534}
   xSpeed: 50
   collider: {fileID: 1508435637401706901}

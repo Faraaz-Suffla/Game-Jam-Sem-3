@@ -7,11 +7,6 @@ public class Gun : Weapon
     public Transform firePoint;
     public GameObject shotPrefab;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (GameManager.Instance.isGamePaused == false)
@@ -30,6 +25,14 @@ public class Gun : Weapon
     public override void Attack()
     {
         base.Attack();
-        Instantiate(shotPrefab, firePoint.position, firePoint.rotation);
+        //Invoke(nameof(GameManager.Instance.SwitchSetting), 1f); //idk why this doesn't work
+        StartCoroutine(SettingSwitchDelay());
+        Instantiate(shotPrefab, firePoint.position, firePoint.rotation, GameManager.Instance.CurrentSetting.transform);
+    }
+
+    private IEnumerator SettingSwitchDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        GameManager.Instance.SwitchSetting();
     }
 }

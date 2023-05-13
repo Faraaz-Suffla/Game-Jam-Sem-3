@@ -411,6 +411,7 @@ MonoBehaviour:
   EndLevelSceneIndex: 1
   PresentSetting: {fileID: 1304221622}
   FutureSetting: {fileID: 342212504}
+  CurrentSetting: {fileID: 0}
   PlayerWithoutGun: {fileID: 269698507320168396, guid: 01e170dada7972d4e97b5248a56f645a, type: 3}
   PlayerWithGun: {fileID: 1695515167080563552, guid: 81a79e7f9c7a19c4d8ee123317f2a356, type: 3}
   StartingPlayerAmmo: 5
@@ -34522,7 +34523,7 @@ GameObject:
   - component: {fileID: 342212505}
   m_Layer: 0
   m_Name: FutureSetting
-  m_TagString: Untagged
+  m_TagString: FutureSetting
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37099,6 +37100,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9218558452853728201, guid: 4ccdc23957f6f5e409dfc68022bae259, type: 3}
   m_PrefabInstance: {fileID: 83719585}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &722927702 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1695515167080563565, guid: 81a79e7f9c7a19c4d8ee123317f2a356, type: 3}
+  m_PrefabInstance: {fileID: 1695515167056307718}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &733206980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37870,7 +37876,7 @@ GameObject:
   - component: {fileID: 1304221623}
   m_Layer: 0
   m_Name: 'PresentSetting '
-  m_TagString: Untagged
+  m_TagString: PresentSetting
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69971,6 +69977,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1695515167080563567, guid: 81a79e7f9c7a19c4d8ee123317f2a356, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 722927702}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81a79e7f9c7a19c4d8ee123317f2a356, type: 3}
 --- !u!1001 &5328787501933436196
