@@ -14,12 +14,15 @@ public class Gun : Weapon
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (GameManager.Instance.isGamePaused == false)
         {
-            if(GameManager.Instance.PlayerAmmo > 0)
+            if (Input.GetButtonDown("Fire1"))
             {
-                GameManager.Instance.PlayerAmmo--;
-                Attack();
+                if(GameManager.Instance.PlayerAmmo > 0)
+                {
+                    GameManager.Instance.PlayerAmmo--;
+                    Attack();
+                }
             }
         }
     }

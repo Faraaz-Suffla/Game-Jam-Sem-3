@@ -7,8 +7,9 @@ TagManager:
   - Enemy
   - Ammo
   - Switch Token
-  - Bullet
   - Obstacle
+  - EnemyAttack
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX

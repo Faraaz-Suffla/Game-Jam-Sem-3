@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float xMovement;
     private float yMovement;
     [SerializeField] private float xSpeed = 40;
-    private bool isGrounded;
+    //private bool isGrounded;
 
     [SerializeField] private CapsuleCollider2D collider;
     [SerializeField] private LayerMask groundLayer;
@@ -34,29 +34,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        xMovement = Input.GetAxisRaw("Horizontal") * xSpeed;
-        yMovement = rigidBody.velocity.y;
-
-        if (Input.GetButtonDown("Jump"))
+        //if (GameManager.Instance.isGamePaused == false)
         {
-            jump = true;
-            isGrounded = false;
-        }
+            xMovement = Input.GetAxisRaw("Horizontal") * xSpeed;
+            yMovement = rigidBody.velocity.y;
 
-        
-        else if (Input.GetButtonDown("Fire2"))
-        {
-            Melee();
-        }
-    }
-     private void Shoot()
-    {
-        
-    }
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+                //isGrounded = false;
+            }
 
-    private void Melee()
-    {
-        animator.SetTrigger("Melee");
+        }
     }
 
     private void FixedUpdate()
@@ -96,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnLanding()
     {
-        isGrounded = true;
+        //isGrounded = true;
     }
 
     private bool isGroundedCheck()
