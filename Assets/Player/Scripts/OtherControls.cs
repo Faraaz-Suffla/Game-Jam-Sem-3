@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OtherControls : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     void Awake()
     {
         
@@ -16,7 +17,7 @@ public class OtherControls : MonoBehaviour
             GameManager.Instance.PauseToggle();
         }
 
-        if (GameManager.Instance.isGamePaused == false)
+        if (GameManager.Instance.ControlsDisabled == false)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -24,5 +25,28 @@ public class OtherControls : MonoBehaviour
             }
 
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Obstacle":
+            case "EnemyAttack":
+                AboutToDie();
+                break;
+        }
+        
+    }
+
+    private void AboutToDie()
+    {
+        GameManager.Instance.ControlsDisabled = true;
+        animator.SetTrigger("TakeDamage");
+    }
+
+    private void Die() // Called in animator
+    {
+        GameManager.Instance.PlayerDie();
     }
 }

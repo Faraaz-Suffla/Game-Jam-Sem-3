@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public string TargetTag { get; set; }
-    public GameObject TargetCharacter { get; set; }
-
-    void Start()
-    {
-        
-    }
+    [SerializeField] public string TargetTag { get; set; }
+    //public GameObject TargetCharacter { get; set; }
 
     void Update()
     {

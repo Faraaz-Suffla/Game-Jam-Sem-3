@@ -11,7 +11,7 @@ public class MeleeWeapon : Weapon
     private RaycastHit2D hit;
     void Update()
     {
-        //if(GameManager.Instance.isGamePaused == false)
+        if(GameManager.Instance.ControlsDisabled == false)
         {
             if (Input.GetButtonDown("Fire2"))
             {
@@ -29,9 +29,13 @@ public class MeleeWeapon : Weapon
     private void Melee() // called in melee animation
     {
         hit = Physics2D.CircleCast(attackOrigin.position, attackRadius, Vector2.right, attackRadius + 1, targetLayer);
-        if (hit.collider.CompareTag(TargetTag))
+        if (hit.collider.CompareTag("Enemy"))
         {
-
+            Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.Die();
+            }
         }
     }
 }

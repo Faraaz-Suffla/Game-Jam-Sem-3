@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.isGamePaused == false)
+        if (GameManager.Instance.ControlsDisabled == false)
         {
             xMovement = Input.GetAxisRaw("Horizontal") * xSpeed;
             yMovement = rigidBody.velocity.y;

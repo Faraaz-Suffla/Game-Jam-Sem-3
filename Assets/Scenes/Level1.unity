@@ -414,8 +414,7 @@ MonoBehaviour:
   CurrentSetting: {fileID: 0}
   PlayerWithoutGun: {fileID: 269698507320168396, guid: 01e170dada7972d4e97b5248a56f645a, type: 3}
   PlayerWithGun: {fileID: 1695515167080563552, guid: 81a79e7f9c7a19c4d8ee123317f2a356, type: 3}
-  StartingPlayerAmmo: 5
-  isGamePaused: 0
+  StartingPlayerAmmo: 6
 --- !u!4 &98973213
 Transform:
   m_ObjectHideFlags: 0
@@ -34713,6 +34712,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 5423081650068300024, guid: b6bd88b957f981f45a9a069edcee52a6, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 8595665956929959321, guid: b6bd88b957f981f45a9a069edcee52a6, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -38522,6 +38525,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1304221623}
     m_Modifications:
+    - target: {fileID: 687511157086100870, guid: 0eb5ca57fb68bea4aa742901b33d65e8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 854600359903583224, guid: 0eb5ca57fb68bea4aa742901b33d65e8, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -38568,6 +38575,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6347993120788211162, guid: 0eb5ca57fb68bea4aa742901b33d65e8, type: 3}
       propertyPath: m_Name
+      value: Ammo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347993120788211162, guid: 0eb5ca57fb68bea4aa742901b33d65e8, type: 3}
+      propertyPath: m_TagString
       value: Ammo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -70043,6 +70054,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1695515167080563563, guid: 81a79e7f9c7a19c4d8ee123317f2a356, type: 3}
+      propertyPath: m_GravityScale
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695515167080563564, guid: 81a79e7f9c7a19c4d8ee123317f2a356, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695515167080563564, guid: 81a79e7f9c7a19c4d8ee123317f2a356, type: 3}
+      propertyPath: m_JumpForce
+      value: 800
+      objectReference: {fileID: 0}
     - target: {fileID: 1695515167080563566, guid: 81a79e7f9c7a19c4d8ee123317f2a356, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -70091,6 +70114,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 722927702}
+    - target: {fileID: 1695515167080563567, guid: 81a79e7f9c7a19c4d8ee123317f2a356, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81a79e7f9c7a19c4d8ee123317f2a356, type: 3}
 --- !u!1001 &5328787501933436196

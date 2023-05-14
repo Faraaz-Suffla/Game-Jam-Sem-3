@@ -7,10 +7,6 @@ public abstract class Collectibles : MonoBehaviour
     // Can be set in inspector for different collectibles
     public GameObject CollectEffect;
     public AudioClip CollectSound;
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -26,7 +22,8 @@ public abstract class Collectibles : MonoBehaviour
     }
     public virtual void Collect()
     {
-        Instantiate(CollectEffect, transform.position, transform.rotation);
+        //Instantiate(CollectEffect, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
     public void DestroyObject() // Called on collect animation event
     {

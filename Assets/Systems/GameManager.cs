@@ -39,9 +39,10 @@ public class GameManager : MonoBehaviour
     public int PlayerAmmo { get; set; }
     private int playerAmmoAtLevelStart;
     public bool PlayerOnMovingPlatform { get; set; } = false;
-    [Space]
-    [Header("Other")]
-    public bool isGamePaused = false;
+    //[Space]
+    //[Header("Other")]
+    public bool IsGamePaused { get; set; } = false;
+    public bool ControlsDisabled { get; set; } = false;
 
     private void Awake()
     {
@@ -69,11 +70,12 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDie()
     {
-
+        RestartLevel();
     }
     private SpriteRenderer playerSprite;
     public void PlayerLeaveLevel(float leaveDuration)
     {
+        ControlsDisabled = true;
         playerSprite = PlayerWithGun.GetComponent<SpriteRenderer>();
         StartCoroutine(MakePlayerTransparent(leaveDuration));
     }
@@ -126,6 +128,7 @@ public class GameManager : MonoBehaviour
         FutureSetting = GameObject.FindGameObjectWithTag("FutureSetting");
         SwitchToPresentSetting();
         playerAmmoAtLevelStart = PlayerAmmo;
+        ControlsDisabled = false;
     }
 
     private bool isCurrentSceneALevel()
@@ -179,7 +182,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseToggle() // To pause or unpause the game
     {
-        if(isGamePaused)
+        if(IsGamePaused)
         {
             UnpauseGame();
         }
@@ -192,12 +195,14 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
-        isGamePaused = true;
+        IsGamePaused = true;
+        ControlsDisabled = true;
     }
     public void UnpauseGame()
     {
         Time.timeScale = 1;
-        isGamePaused = false;
+        IsGamePaused = false;
+        ControlsDisabled = false;
     }
 
     public void QuitToMenu()
