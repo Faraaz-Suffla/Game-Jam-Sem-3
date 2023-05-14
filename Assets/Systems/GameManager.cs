@@ -71,6 +71,26 @@ public class GameManager : MonoBehaviour
     {
 
     }
+    private SpriteRenderer playerSprite;
+    public void PlayerLeaveLevel(float leaveDuration)
+    {
+        playerSprite = PlayerWithGun.GetComponent<SpriteRenderer>();
+        StartCoroutine(MakePlayerTransparent(leaveDuration));
+    }
+    private IEnumerator MakePlayerTransparent(float duration) // Code from this video about Lerp: https://www.youtube.com/watch?v=RNccTrsgO9g
+    {
+        float timeElapsed = duration;
+
+        while (timeElapsed < duration)
+        {
+            float t = timeElapsed / duration;
+            playerSprite.color = new Color(1f, 1f, 1f, Mathf.Lerp(0, 1, t));
+            timeElapsed -= Time.deltaTime;
+
+            yield return null;
+        }
+        playerSprite.color = new Color(1f, 1f, 1f, 0f);
+    }
 
     public void NextScene()
     {
