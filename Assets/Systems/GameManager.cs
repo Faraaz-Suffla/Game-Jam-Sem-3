@@ -7,20 +7,20 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public static GameManager Instance
-    { 
-        get 
+    {
+        get
         {
             //if (instance == null)
             //{
             //    Debug.LogError("GameManager is null!");
             //}
             return instance;
-        } 
+        }
         private set { instance = value; }
     }
 
     [Header("Scene Management")]
-    [SerializeField] private int TotalSceneAmount;
+    private int TotalSceneAmount;
     private int currentScene = 0;
     [SerializeField] private int StartLevelSceneIndex;
     [SerializeField] private int EndLevelSceneIndex;
@@ -46,26 +46,32 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        //if (Instance == null)
-        //{
-        //}
-        //else if (Instance != this)
-        //{
-            
-        //    //Destroy(gameObject);
-        //    //Debug.Log("GameManager object has been destroyed!");
-        //}
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            Debug.Log("GameManager object has been destroyed!");
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        TotalSceneAmount = SceneManager.sceneCount;
 
-        StartFirstLevel();
+        //var op = SceneManager.LoadSceneAsync(currentScene);
+        //op.completed += (x) =>
+        //{
+        //    Debug.Log("Loaded");
+        //    LoadScene();
+        //};
     }
+
 
     public void PlayerPicksUpGun()
     {
-        Transform playerPosition = PlayerWithoutGun.transform;
-        Destroy(PlayerWithoutGun);
-        Instantiate(PlayerWithGun, playerPosition);
+        //Transform playerPosition = PlayerWithoutGun.transform;
+        //Destroy(PlayerWithoutGun);
+        //Instantiate(PlayerWithGun, playerPosition);
     }
 
     public void PlayerDie()
@@ -108,10 +114,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (isCurrentSceneALevel())
-        {
-            StartLevel();
-        }
+
 
     }
     private void StartFirstLevel()
@@ -142,25 +145,18 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(currentScene);
             PlayerAmmo = playerAmmoAtLevelStart;
-            if (currentScene == StartLevelSceneIndex)
-            {
-                StartFirstLevel();
-            }
-            else
-            {
-                StartLevel();
-            }
+
         }
     }
 
     public void SwitchSetting()
     {
         //Should we add scene switch effect?
-        if(PlayerOnMovingPlatform)
+        if (PlayerOnMovingPlatform)
         {
             PlayerWithGun.transform.SetParent(null, true);
         }
-        if(PresentSetting.activeSelf)
+        if (PresentSetting.activeSelf)
         {
             FutureSetting.SetActive(true);
             PresentSetting.SetActive(false);
@@ -182,7 +178,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseToggle() // To pause or unpause the game
     {
-        if(IsGamePaused)
+        if (IsGamePaused)
         {
             UnpauseGame();
         }
@@ -209,15 +205,34 @@ public class GameManager : MonoBehaviour
     {
         UnpauseGame();
     }
-    public void OnApplicationPause(bool pause)
+
+    private void SceneFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        
+        if (isCurrentSceneALevel())
+        {
+            if (currentScene == StartLevelSceneIndex)
+            {
+                StartFirstLevel();
+            }
+            else
+            {
+                StartLevel();
+            }
+        }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += SceneFinishedLoading;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= SceneFinishedLoading;
+    }
 
 
     void Update()
     {
-        
+
     }
 }

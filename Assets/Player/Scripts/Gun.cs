@@ -9,7 +9,7 @@ public class Gun : Weapon
 
     void Update()
     {
-        if (GameManager.Instance.ControlsDisabled == false)
+        //if (GameManager.Instance.ControlsDisabled == false)
         {
             if (Input.GetButtonDown("Fire1"))
             {
