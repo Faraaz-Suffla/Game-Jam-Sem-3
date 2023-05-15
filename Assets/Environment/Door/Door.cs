@@ -16,7 +16,7 @@ public class Door : MonoBehaviour
 
     private void GoToNextLevel() // Called in animation event
     {
-        GameManager.Instance.PlayerLeaveLevel(1);
+        ScenesManager.Instance.PlayerLeaveLevel(1);
         Invoke(nameof(CloseDoor), 1.1f);
     }
     private void CloseDoor()

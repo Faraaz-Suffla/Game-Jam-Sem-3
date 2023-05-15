@@ -6,7 +6,7 @@ public class GunPickUp : Collectibles
 {
     public override void Collect()
     {
-        GameManager.Instance.PlayerPicksUpGun();
+        ScenesManager.Instance.PlayerPicksUpGun();
         base.Collect();
     }
 }
