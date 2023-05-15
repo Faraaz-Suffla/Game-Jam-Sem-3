@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &98973212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,7 +406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a44b567172900647999ce1f9726873e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalSceneAmount: 3
   StartLevelSceneIndex: 1
   EndLevelSceneIndex: 2
   PresentSetting: {fileID: 1304221622}
