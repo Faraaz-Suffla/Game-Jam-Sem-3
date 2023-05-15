@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         TotalSceneAmount = SceneManager.sceneCount;
 
         //var op = SceneManager.LoadSceneAsync(currentScene);
-        //op.completed += (x) => 
+        //op.completed += (x) =>
         //{
         //    Debug.Log("Loaded");
         //    LoadScene();
@@ -69,9 +69,9 @@ public class GameManager : MonoBehaviour
 
     public void PlayerPicksUpGun()
     {
-        Transform playerPosition = PlayerWithoutGun.transform;
-        Destroy(PlayerWithoutGun);
-        Instantiate(PlayerWithGun, playerPosition);
+        //Transform playerPosition = PlayerWithoutGun.transform;
+        //Destroy(PlayerWithoutGun);
+        //Instantiate(PlayerWithGun, playerPosition);
     }
 
     public void PlayerDie()
@@ -205,14 +205,8 @@ public class GameManager : MonoBehaviour
     {
         UnpauseGame();
     }
-    public void OnApplicationPause(bool pause)
-    {
 
-    }
-
-
-
-    private void LoadScene()
+    private void SceneFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         if (isCurrentSceneALevel())
         {
@@ -226,6 +220,16 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += SceneFinishedLoading;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= SceneFinishedLoading;
+    }
+
 
     void Update()
     {
