@@ -26,14 +26,15 @@ public class ScenesManager : MonoBehaviour
     }
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this);
+            return;
         }
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         //if (GameManager.Instance.currentScene != thisSceneIndex)
         //{

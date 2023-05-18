@@ -41,10 +41,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this);
             //Debug.Log("GameManager object has been destroyed!");
+            return;
         }
         else
         {
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     public void NextScene()
     {
+        ControlsDisabled = false;
         if (currentScene != TotalSceneAmount)
         {
             currentScene++;
@@ -108,6 +110,7 @@ public class GameManager : MonoBehaviour
     {
         if (isCurrentSceneALevel())
         {
+            ControlsDisabled = false;
             SceneManager.LoadScene(currentScene);
             PlayerAmmo = playerAmmoAtLevelStart;
 
@@ -163,6 +166,7 @@ public class GameManager : MonoBehaviour
                 StartLevel();
             }
         }
+        ControlsDisabled = false;
     }
 
     
