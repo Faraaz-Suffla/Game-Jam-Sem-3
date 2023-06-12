@@ -9,7 +9,7 @@ public class Gun : Weapon
 
     void Update()
     {
-        if (GameManager.Instance.ControlsDisabled == false)
+        //if (GameManager.Instance.ControlsDisabled == false)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -27,7 +27,7 @@ public class Gun : Weapon
         base.Attack();
         //Invoke(nameof(GameManager.Instance.SwitchSetting), 1f); //idk why this doesn't work
         StartCoroutine(SettingSwitchDelay());
-        Instantiate(shotPrefab, firePoint.position, firePoint.rotation, GameManager.Instance.CurrentSetting.transform);
+        Instantiate(shotPrefab, firePoint.position, firePoint.rotation, ScenesManager.Instance.CurrentSetting.transform);
     }
 
     private IEnumerator SettingSwitchDelay()
